@@ -146,9 +146,12 @@ namespace TaoBao_Pic_Info
 
         private void btn_spider_Click(object sender, EventArgs e)
         {
-            spider();
+            spider_work();
         }
-        private void spider()
+        /// <summary> 开始爬取信息
+        /// 
+        /// </summary>
+        private void spider_work()
         {
             List<string> urls = get_input_urls();
             if (urls.Count > 0)
@@ -163,13 +166,31 @@ namespace TaoBao_Pic_Info
                 return;
             }
         }
+
+        /// <summary>抓取单个url
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
         private void work_by_url(string url)
         {
             String con = comm.Request_string(url);
+            List<string> color_pic_urls = new List<string>();
+            get_color_pic_urls(con, out color_pic_urls);
+
+            List<string> big_pic_urls = new List<string>();
+            get_big_pic_urls(con, out big_pic_urls);
+
+            string size_info = "";
+            get_size_info(con, out size_info);
+
+            string shop_info = "";
+            get_shop_info(con, out shop_info);
+
+            List<string> try_html = new List<string>();
+            get_try_pic_html(con, out try_html);
         }
 
-        /// <summary>
-        /// 获取用户输入的url队列
+        /// <summary> 获取用户输入的url队列
         /// </summary>
         /// <returns></returns>
         private List<string> get_input_urls()
@@ -198,37 +219,36 @@ namespace TaoBao_Pic_Info
             return result;
         }
 
-        /// <summary>
-        /// 颜色图片
+        /// <summary> 颜色图片
         /// </summary>
         /// <param name="con"></param>
-        /// <param name="color_pic_ids"></param>
-        private void get_color_pic_ids(string con, out List<string> color_pic_ids)
+        /// <param name="color_pic_urls"></param>
+        private void get_color_pic_urls(string con, out List<string> color_pic_urls)
         {
             string url = "";
-            color_pic_ids = new List<string>();
+            color_pic_urls = new List<string>();
             MatchCollection match_color = Regex.Matches(con, @"colorPictureOptions.+?picturemap(.+?)}};", RegexOptions.Singleline);
             if (match_color.Count > 0)
             {
                 string colors = match_color[0].Groups[1].Value;
-                MatchCollection match_id = Regex.Matches(colors, "\"\\d+\"", RegexOptions.Singleline);
+                MatchCollection match_id = Regex.Matches(colors, "\"(\\d+)\"", RegexOptions.Singleline);
                 for (int i = 0; i < match_id.Count; i++)
                 {
                     string id = match_id[i].Groups[1].Value;
                     url = PIC_URL_START + id + PIC_URL_END;
-                    color_pic_ids.Add(url);
+                    color_pic_urls.Add(url);
                 }
             }
         }
-        /// <summary>
-        /// 常规预览大图
+
+        /// <summary> 常规预览大图
         /// </summary>
         /// <param name="con"></param>
-        /// <param name="big_pic_ids"></param>
-        private void get_big_pic_ids(string con, out List<string> big_pic_ids)
+        /// <param name="big_pic_urls"></param>
+        private void get_big_pic_urls(string con, out List<string> big_pic_urls)
         {
             string url = "";
-            big_pic_ids = new List<string>();
+            big_pic_urls = new List<string>();
             MatchCollection match_color = Regex.Matches(con, @"relatedPictureOptions .+?picturemap(.+?)}};", RegexOptions.Singleline);
             if (match_color.Count > 0)
             {
@@ -238,10 +258,11 @@ namespace TaoBao_Pic_Info
                 {
                     string id = match_id[i].Groups[1].Value;
                     url = PIC_URL_START + id + PIC_URL_END;
-                    big_pic_ids.Add(url);
+                    big_pic_urls.Add(url);
                 }
             }
         }
+
         /// <summary> 获取大小说明
         /// 
         /// </summary>
@@ -253,9 +274,10 @@ namespace TaoBao_Pic_Info
             MatchCollection match_color = Regex.Matches(con, "<div id=\"sizeList.+?#sizeList -->", RegexOptions.Singleline);
             if (match_color.Count > 0)
             {
-                size_info = match_color[0].Groups[1].Value;
+                size_info = match_color[0].Value;
             }
         }
+
         /// <summary> 获取产品说明
         /// 
         /// </summary>
@@ -267,21 +289,22 @@ namespace TaoBao_Pic_Info
             MatchCollection match_color = Regex.Matches(con, "<div id=\"spec.+?#spec -->", RegexOptions.Singleline);
             if (match_color.Count > 0)
             {
-                shop_info = match_color[0].Groups[1].Value;
+                shop_info = match_color[0].Value;
             }
         }
+
         /// <summary> 获取试穿图片img tag.
         /// 
         /// </summary>
         /// <param name="con"></param>
         /// <param name="size_info"></param>
-        private void get_try_pic_html(string con, out string try_html)
+        private void get_try_pic_html(string con, out List<string> try_html)
         {
-            try_html = "";
+            try_html = new List<string>();
             MatchCollection match_color = Regex.Matches(con, "figure.+?(<img.+?)</figure", RegexOptions.Singleline);
             if (match_color.Count > 0)
             {
-                try_html = match_color[0].Groups[1].Value;
+                try_html.Add(match_color[0].Groups[1].Value);
             }
         }
         /*

@@ -43,12 +43,14 @@
             this.btn_check_reg = new System.Windows.Forms.Button();
             this.tab_main = new System.Windows.Forms.TabControl();
             this.tab_spider = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btn_spider = new System.Windows.Forms.Button();
             this.tbx_urls = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tab_reg = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
-            this.btn_spider = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tab_main.SuspendLayout();
             this.tab_spider.SuspendLayout();
@@ -92,7 +94,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(129, 36);
+            this.label1.Location = new System.Drawing.Point(52, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 14);
             this.label1.TabIndex = 1;
@@ -100,26 +102,24 @@
             // 
             // tbx_user
             // 
-            this.tbx_user.Location = new System.Drawing.Point(198, 33);
-            this.tbx_user.Multiline = true;
+            this.tbx_user.Location = new System.Drawing.Point(121, 31);
             this.tbx_user.Name = "tbx_user";
-            this.tbx_user.Size = new System.Drawing.Size(235, 33);
+            this.tbx_user.Size = new System.Drawing.Size(235, 23);
             this.tbx_user.TabIndex = 2;
             this.tbx_user.Text = "test";
             // 
             // tbx_com
             // 
-            this.tbx_com.Location = new System.Drawing.Point(198, 83);
-            this.tbx_com.Multiline = true;
+            this.tbx_com.Location = new System.Drawing.Point(121, 80);
             this.tbx_com.Name = "tbx_com";
             this.tbx_com.ReadOnly = true;
-            this.tbx_com.Size = new System.Drawing.Size(237, 42);
+            this.tbx_com.Size = new System.Drawing.Size(237, 23);
             this.tbx_com.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(129, 98);
+            this.label2.Location = new System.Drawing.Point(52, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 14);
             this.label2.TabIndex = 3;
@@ -128,7 +128,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(129, 160);
+            this.label3.Location = new System.Drawing.Point(52, 137);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 14);
             this.label3.TabIndex = 5;
@@ -136,7 +136,7 @@
             // 
             // tbx_reg
             // 
-            this.tbx_reg.Location = new System.Drawing.Point(198, 147);
+            this.tbx_reg.Location = new System.Drawing.Point(121, 124);
             this.tbx_reg.Multiline = true;
             this.tbx_reg.Name = "tbx_reg";
             this.tbx_reg.Size = new System.Drawing.Size(235, 42);
@@ -144,9 +144,9 @@
             // 
             // btn_create_com
             // 
-            this.btn_create_com.Location = new System.Drawing.Point(443, 83);
+            this.btn_create_com.Location = new System.Drawing.Point(366, 80);
             this.btn_create_com.Name = "btn_create_com";
-            this.btn_create_com.Size = new System.Drawing.Size(87, 42);
+            this.btn_create_com.Size = new System.Drawing.Size(87, 29);
             this.btn_create_com.TabIndex = 7;
             this.btn_create_com.Text = "生成机器码";
             this.btn_create_com.UseVisualStyleBackColor = true;
@@ -154,7 +154,7 @@
             // 
             // btn_check_reg
             // 
-            this.btn_check_reg.Location = new System.Drawing.Point(443, 145);
+            this.btn_check_reg.Location = new System.Drawing.Point(366, 122);
             this.btn_check_reg.Name = "btn_check_reg";
             this.btn_check_reg.Size = new System.Drawing.Size(87, 44);
             this.btn_check_reg.TabIndex = 8;
@@ -180,11 +180,31 @@
             this.tab_spider.Controls.Add(this.label5);
             this.tab_spider.Location = new System.Drawing.Point(4, 23);
             this.tab_spider.Name = "tab_spider";
-            this.tab_spider.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_spider.Padding = new System.Windows.Forms.Padding(3);
             this.tab_spider.Size = new System.Drawing.Size(688, 255);
             this.tab_spider.TabIndex = 0;
             this.tab_spider.Text = "抓取";
             this.tab_spider.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(53, 195);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(273, 14);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "内容会自动保存到商品ID所对应的文件中。";
+            // 
+            // btn_spider
+            // 
+            this.btn_spider.Location = new System.Drawing.Point(492, 142);
+            this.btn_spider.Name = "btn_spider";
+            this.btn_spider.Size = new System.Drawing.Size(108, 41);
+            this.btn_spider.TabIndex = 2;
+            this.btn_spider.Text = "开 始 抓 取";
+            this.btn_spider.UseVisualStyleBackColor = true;
+            this.btn_spider.Click += new System.EventHandler(this.btn_spider_Click);
             // 
             // tbx_urls
             // 
@@ -193,7 +213,6 @@
             this.tbx_urls.Name = "tbx_urls";
             this.tbx_urls.Size = new System.Drawing.Size(544, 103);
             this.tbx_urls.TabIndex = 1;
-            this.tbx_urls.Text = "http://www.muji.net/store/cmdty/detail/4549337291867";
             // 
             // label5
             // 
@@ -206,6 +225,7 @@
             // 
             // tab_reg
             // 
+            this.tab_reg.Controls.Add(this.label7);
             this.tab_reg.Controls.Add(this.label4);
             this.tab_reg.Controls.Add(this.btn_create_com);
             this.tab_reg.Controls.Add(this.btn_check_reg);
@@ -217,7 +237,7 @@
             this.tab_reg.Controls.Add(this.tbx_com);
             this.tab_reg.Location = new System.Drawing.Point(4, 23);
             this.tab_reg.Name = "tab_reg";
-            this.tab_reg.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_reg.Padding = new System.Windows.Forms.Padding(3);
             this.tab_reg.Size = new System.Drawing.Size(688, 255);
             this.tab_reg.TabIndex = 1;
             this.tab_reg.Text = "验证帐号";
@@ -226,39 +246,43 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("宋体", 7F);
+            this.label4.Font = new System.Drawing.Font("宋体", 9F);
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(208, 206);
+            this.label4.Location = new System.Drawing.Point(52, 193);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(225, 30);
+            this.label4.Size = new System.Drawing.Size(527, 36);
             this.label4.TabIndex = 9;
-            this.label4.Text = "步骤：输入用户名，生成验证码，联系[张志鹏]\r\n\r\n索要注册码，复制到注册码一栏，验证通过即可。\r\n";
+            this.label4.Text = "步骤：输入用户名，生成验证码，联系开发者索要注册码，复制到注册码一栏，验证通过即可。\r\n\r\n联系人：张经理   QQ：1126918258   联系电话：1386" +
+    "9139163   Email：qq1126918258@gmail.com";
             // 
-            // btn_spider
+            // label7
             // 
-            this.btn_spider.Location = new System.Drawing.Point(492, 142);
-            this.btn_spider.Name = "btn_spider";
-            this.btn_spider.Size = new System.Drawing.Size(108, 41);
-            this.btn_spider.TabIndex = 2;
-            this.btn_spider.Text = "开 始 抓 取";
-            this.btn_spider.UseVisualStyleBackColor = true;
-            this.btn_spider.Click += new System.EventHandler(this.btn_spider_Click);
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("宋体", 8.5F);
+            this.label7.Location = new System.Drawing.Point(459, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(215, 108);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "软件售价：4000RMB/人/帐号/电脑/\r\n\r\n交易方式：支付宝账户13869139163\r\n\r\n支付宝打款，备注机器码和用户名\r\n\r\n联系授权人索取软件注册码" +
+    "。\r\n\r\n给您省出来的不止4000RMB，非诚勿扰。";
             // 
-            // label6
+            // label8
             // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(53, 195);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(273, 14);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "内容会自动保存到商品ID所对应的文件中。";
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("宋体", 8.2F);
+            this.label8.Location = new System.Drawing.Point(63, 342);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(639, 33);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "本工具禁止以任何形式的编译、反编译、调试、修改等学习或交流，不允许用于商业、个人、集体等非法牟利用途，\r\n禁止使用者向第三方扩散、复制！使用者只有使用权！如违反使" +
+    "用约定，作者有权获取使用者所牟利的80%，并且收回软件使用权！\r\n软件所有权归作者【ChainBoy】所有！";
             // 
             // MujiMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 386);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.tab_main);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("宋体", 10F);
@@ -271,7 +295,7 @@
             this.Name = "MujiMainForm";
             this.Opacity = 0.98D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "无良印品";
+            this.Text = "无良印品 - By:ChainBoy QQ:1126918258  Email:qq1126918258@gmail.com";
             this.Load += new System.EventHandler(this.MujiMainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -307,6 +331,8 @@
         private System.Windows.Forms.TextBox tbx_urls;
         private System.Windows.Forms.Button btn_spider;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
 
