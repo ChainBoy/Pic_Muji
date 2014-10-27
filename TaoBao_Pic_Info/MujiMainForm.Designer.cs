@@ -43,10 +43,12 @@
             this.btn_check_reg = new System.Windows.Forms.Button();
             this.tab_main = new System.Windows.Forms.TabControl();
             this.tab_spider = new System.Windows.Forms.TabPage();
+            this.tbx_urls = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tab_reg = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btn_spider = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tab_main.SuspendLayout();
             this.tab_spider.SuspendLayout();
@@ -61,7 +63,8 @@
             this.tool_exit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(661, 25);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(783, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -89,61 +92,61 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(111, 33);
+            this.label1.Location = new System.Drawing.Point(129, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.Size = new System.Drawing.Size(63, 14);
             this.label1.TabIndex = 1;
             this.label1.Text = "1.用户名";
             // 
             // tbx_user
             // 
-            this.tbx_user.Location = new System.Drawing.Point(170, 30);
+            this.tbx_user.Location = new System.Drawing.Point(198, 33);
             this.tbx_user.Multiline = true;
             this.tbx_user.Name = "tbx_user";
-            this.tbx_user.Size = new System.Drawing.Size(202, 31);
+            this.tbx_user.Size = new System.Drawing.Size(235, 33);
             this.tbx_user.TabIndex = 2;
             this.tbx_user.Text = "test";
             // 
             // tbx_com
             // 
-            this.tbx_com.Location = new System.Drawing.Point(170, 77);
+            this.tbx_com.Location = new System.Drawing.Point(198, 83);
             this.tbx_com.Multiline = true;
             this.tbx_com.Name = "tbx_com";
             this.tbx_com.ReadOnly = true;
-            this.tbx_com.Size = new System.Drawing.Size(204, 39);
+            this.tbx_com.Size = new System.Drawing.Size(237, 42);
             this.tbx_com.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(111, 90);
+            this.label2.Location = new System.Drawing.Point(129, 98);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.Size = new System.Drawing.Size(63, 14);
             this.label2.TabIndex = 3;
             this.label2.Text = "2.机器码";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(111, 148);
+            this.label3.Location = new System.Drawing.Point(129, 160);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.Size = new System.Drawing.Size(63, 14);
             this.label3.TabIndex = 5;
             this.label3.Text = "3.注册码";
             // 
             // tbx_reg
             // 
-            this.tbx_reg.Location = new System.Drawing.Point(170, 136);
+            this.tbx_reg.Location = new System.Drawing.Point(198, 147);
             this.tbx_reg.Multiline = true;
             this.tbx_reg.Name = "tbx_reg";
-            this.tbx_reg.Size = new System.Drawing.Size(202, 39);
+            this.tbx_reg.Size = new System.Drawing.Size(235, 42);
             this.tbx_reg.TabIndex = 6;
             // 
             // btn_create_com
             // 
-            this.btn_create_com.Location = new System.Drawing.Point(380, 77);
+            this.btn_create_com.Location = new System.Drawing.Point(443, 83);
             this.btn_create_com.Name = "btn_create_com";
-            this.btn_create_com.Size = new System.Drawing.Size(75, 39);
+            this.btn_create_com.Size = new System.Drawing.Size(87, 42);
             this.btn_create_com.TabIndex = 7;
             this.btn_create_com.Text = "生成机器码";
             this.btn_create_com.UseVisualStyleBackColor = true;
@@ -151,9 +154,9 @@
             // 
             // btn_check_reg
             // 
-            this.btn_check_reg.Location = new System.Drawing.Point(380, 134);
+            this.btn_check_reg.Location = new System.Drawing.Point(443, 145);
             this.btn_check_reg.Name = "btn_check_reg";
-            this.btn_check_reg.Size = new System.Drawing.Size(75, 41);
+            this.btn_check_reg.Size = new System.Drawing.Size(87, 44);
             this.btn_check_reg.TabIndex = 8;
             this.btn_check_reg.Text = "验  证";
             this.btn_check_reg.UseVisualStyleBackColor = true;
@@ -163,23 +166,43 @@
             // 
             this.tab_main.Controls.Add(this.tab_spider);
             this.tab_main.Controls.Add(this.tab_reg);
-            this.tab_main.Location = new System.Drawing.Point(32, 43);
+            this.tab_main.Location = new System.Drawing.Point(37, 47);
             this.tab_main.Name = "tab_main";
             this.tab_main.SelectedIndex = 0;
-            this.tab_main.Size = new System.Drawing.Size(597, 260);
+            this.tab_main.Size = new System.Drawing.Size(696, 282);
             this.tab_main.TabIndex = 9;
             // 
             // tab_spider
             // 
-            this.tab_spider.Controls.Add(this.textBox1);
+            this.tab_spider.Controls.Add(this.label6);
+            this.tab_spider.Controls.Add(this.btn_spider);
+            this.tab_spider.Controls.Add(this.tbx_urls);
             this.tab_spider.Controls.Add(this.label5);
-            this.tab_spider.Location = new System.Drawing.Point(4, 22);
+            this.tab_spider.Location = new System.Drawing.Point(4, 23);
             this.tab_spider.Name = "tab_spider";
-            this.tab_spider.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_spider.Size = new System.Drawing.Size(589, 234);
+            this.tab_spider.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_spider.Size = new System.Drawing.Size(688, 255);
             this.tab_spider.TabIndex = 0;
             this.tab_spider.Text = "抓取";
             this.tab_spider.UseVisualStyleBackColor = true;
+            // 
+            // tbx_urls
+            // 
+            this.tbx_urls.Location = new System.Drawing.Point(56, 19);
+            this.tbx_urls.Multiline = true;
+            this.tbx_urls.Name = "tbx_urls";
+            this.tbx_urls.Size = new System.Drawing.Size(544, 103);
+            this.tbx_urls.TabIndex = 1;
+            this.tbx_urls.Text = "http://www.muji.net/store/cmdty/detail/4549337291867";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(22, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(28, 14);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "URL";
             // 
             // tab_reg
             // 
@@ -192,10 +215,10 @@
             this.tab_reg.Controls.Add(this.label2);
             this.tab_reg.Controls.Add(this.label3);
             this.tab_reg.Controls.Add(this.tbx_com);
-            this.tab_reg.Location = new System.Drawing.Point(4, 22);
+            this.tab_reg.Location = new System.Drawing.Point(4, 23);
             this.tab_reg.Name = "tab_reg";
-            this.tab_reg.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_reg.Size = new System.Drawing.Size(589, 234);
+            this.tab_reg.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_reg.Size = new System.Drawing.Size(688, 255);
             this.tab_reg.TabIndex = 1;
             this.tab_reg.Text = "验证帐号";
             this.tab_reg.UseVisualStyleBackColor = true;
@@ -205,39 +228,49 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 7F);
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(178, 190);
+            this.label4.Location = new System.Drawing.Point(208, 206);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(225, 30);
             this.label4.TabIndex = 9;
             this.label4.Text = "步骤：输入用户名，生成验证码，联系[张志鹏]\r\n\r\n索要注册码，复制到注册码一栏，验证通过即可。\r\n";
             // 
-            // label5
+            // btn_spider
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 32);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(23, 12);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "URL";
+            this.btn_spider.Location = new System.Drawing.Point(492, 142);
+            this.btn_spider.Name = "btn_spider";
+            this.btn_spider.Size = new System.Drawing.Size(108, 41);
+            this.btn_spider.TabIndex = 2;
+            this.btn_spider.Text = "开 始 抓 取";
+            this.btn_spider.UseVisualStyleBackColor = true;
+            this.btn_spider.Click += new System.EventHandler(this.btn_spider_Click);
             // 
-            // textBox1
+            // label6
             // 
-            this.textBox1.Location = new System.Drawing.Point(61, 16);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(467, 51);
-            this.textBox1.TabIndex = 1;
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(53, 195);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(273, 14);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "内容会自动保存到商品ID所对应的文件中。";
             // 
             // MujiMainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 346);
+            this.ClientSize = new System.Drawing.Size(783, 386);
             this.Controls.Add(this.tab_main);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("宋体", 10F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(789, 414);
+            this.MinimumSize = new System.Drawing.Size(789, 414);
             this.Name = "MujiMainForm";
+            this.Opacity = 0.98D;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "无良印品";
             this.Load += new System.EventHandler(this.MujiMainForm_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -271,7 +304,9 @@
         private System.Windows.Forms.TabPage tab_reg;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbx_urls;
+        private System.Windows.Forms.Button btn_spider;
+        private System.Windows.Forms.Label label6;
     }
 }
 
