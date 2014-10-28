@@ -48,9 +48,11 @@
             this.tbx_urls = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tab_reg = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.rtbx_style = new System.Windows.Forms.RichTextBox();
+            this.rtbx_say = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.tab_main.SuspendLayout();
             this.tab_spider.SuspendLayout();
@@ -174,6 +176,8 @@
             // 
             // tab_spider
             // 
+            this.tab_spider.Controls.Add(this.rtbx_say);
+            this.tab_spider.Controls.Add(this.rtbx_style);
             this.tab_spider.Controls.Add(this.label6);
             this.tab_spider.Controls.Add(this.btn_spider);
             this.tab_spider.Controls.Add(this.tbx_urls);
@@ -213,6 +217,7 @@
             this.tbx_urls.Name = "tbx_urls";
             this.tbx_urls.Size = new System.Drawing.Size(544, 103);
             this.tbx_urls.TabIndex = 1;
+            this.tbx_urls.Text = "http://www.muji.net/store/cmdty/detail/4549337291867";
             // 
             // label5
             // 
@@ -243,6 +248,17 @@
             this.tab_reg.Text = "验证帐号";
             this.tab_reg.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("宋体", 8.5F);
+            this.label7.Location = new System.Drawing.Point(459, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(215, 108);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "软件售价：4000RMB/人/帐号/电脑/\r\n\r\n交易方式：支付宝账户13869139163\r\n\r\n支付宝打款，备注机器码和用户名\r\n\r\n联系授权人索取软件注册码" +
+    "。\r\n\r\n给您省出来的不止4000RMB，非诚勿扰。";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -255,17 +271,6 @@
             this.label4.Text = "步骤：输入用户名，生成验证码，联系开发者索要注册码，复制到注册码一栏，验证通过即可。\r\n\r\n联系人：张经理   QQ：1126918258   联系电话：1386" +
     "9139163   Email：qq1126918258@gmail.com";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("宋体", 8.5F);
-            this.label7.Location = new System.Drawing.Point(459, 44);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(215, 108);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "软件售价：4000RMB/人/帐号/电脑/\r\n\r\n交易方式：支付宝账户13869139163\r\n\r\n支付宝打款，备注机器码和用户名\r\n\r\n联系授权人索取软件注册码" +
-    "。\r\n\r\n给您省出来的不止4000RMB，非诚勿扰。";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -276,6 +281,25 @@
             this.label8.TabIndex = 11;
             this.label8.Text = "本工具禁止以任何形式的编译、反编译、调试、修改等学习或交流，不允许用于商业、个人、集体等非法牟利用途，\r\n禁止使用者向第三方扩散、复制！使用者只有使用权！如违反使" +
     "用约定，作者有权获取使用者所牟利的80%，并且收回软件使用权！\r\n软件所有权归作者【ChainBoy】所有！";
+            // 
+            // rtbx_style
+            // 
+            this.rtbx_style.Location = new System.Drawing.Point(369, 142);
+            this.rtbx_style.Name = "rtbx_style";
+            this.rtbx_style.Size = new System.Drawing.Size(97, 37);
+            this.rtbx_style.TabIndex = 5;
+            this.rtbx_style.Text = resources.GetString("rtbx_style.Text");
+            this.rtbx_style.Visible = false;
+            // 
+            // rtbx_say
+            // 
+            this.rtbx_say.Location = new System.Drawing.Point(56, 142);
+            this.rtbx_say.Name = "rtbx_say";
+            this.rtbx_say.Size = new System.Drawing.Size(291, 41);
+            this.rtbx_say.TabIndex = 6;
+            this.rtbx_say.Text = "亲，本店宝贝100%日本无印良品正品，假一闭店。代购时间15-25天左右，非质量问题不退换~本店可以提供日本购买凭证和EMS的物流证明~本店非七天无理由退换店铺，" +
+    "一旦下单，中途不能取消订单或者变更订单，请谅解~";
+            this.rtbx_say.Visible = false;
             // 
             // MujiMainForm
             // 
@@ -333,6 +357,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RichTextBox rtbx_style;
+        private System.Windows.Forms.RichTextBox rtbx_say;
     }
 }
 
