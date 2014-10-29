@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace TaoBao_Pic_Info
 {
@@ -134,7 +135,7 @@ namespace TaoBao_Pic_Info
         {
             try
             {
-                using (StreamReader sr = new StreamReader(TEMPLATE_PATH, System.Text.Encoding.UTF8))
+                using (StreamReader sr = new StreamReader(TEMPLATE_PATH, System.Text.Encoding.Default))
                 {
                     TEMPLATE_TEXT = sr.ReadToEnd();
                 }
@@ -273,7 +274,7 @@ namespace TaoBao_Pic_Info
         private void save_img_by_url(string url, string shop_id)
         {
             byte[] img_b = comm.Request_bytes(url);
-            this.pictureBox1.Image =  comm.bytes_to_image(img_b);
+            this.pictureBox1.Image = comm.bytes_to_image(img_b);
             comm.save_image_by_list_byte(img_b, RESULT_PATH + "/" + shop_id + ".jpg");
         }
         /// <summary> 根据URL获取商品Id，不存在则设置为时间戳:yyyyMMddHHmmssffff
@@ -315,7 +316,7 @@ namespace TaoBao_Pic_Info
         {
             string csv_content = create_csv_by_html(html);
             check_result_path();
-            using (StreamWriter sw = new StreamWriter(RESULT_PATH + "/" + shop_id + "." + RESULT_SUFFIX, false))
+            using (StreamWriter sw = new StreamWriter(RESULT_PATH + "/" + shop_id + RESULT_SUFFIX, false, Encoding.Default))
             {
                 sw.Write(csv_content);
             }
@@ -329,6 +330,7 @@ namespace TaoBao_Pic_Info
         /// <returns></returns>
         private string create_csv_by_html(string html)
         {
+            html = Regex.Replace(html, "\n|\r\n", "");
             string result = Regex.Replace(TEMPLATE_TEXT, TEMPLATE_REPLACE, html);
             return result;
         }
@@ -345,7 +347,7 @@ namespace TaoBao_Pic_Info
         /// <returns></returns>
         private string create_html_by_all_div(string styleHtml, string colorPicHtml, string bigPicHtml, string tryPicHtml, string sizeInfoHtml, string shopInfoHtml, string sayHtml)
         {
-            string divHtml = "<div style=\"width: 520px;\">" + styleHtml + colorPicHtml + bigPicHtml + tryPicHtml + sizeInfoHtml + shopInfoHtml + sayHtml + "</div>";
+            string divHtml = "\"<div style=\"width: 520px;\">" + styleHtml + colorPicHtml + bigPicHtml + tryPicHtml + sizeInfoHtml + shopInfoHtml + sayHtml + "</div>\"";
             return divHtml;
         }
 

@@ -134,10 +134,11 @@ namespace TaoBao_Pic_Info
         /// <returns></returns>
         public Image bytes_to_image(byte[] buffer)
         {
-            MemoryStream ms = new MemoryStream(buffer);
-            Image image = System.Drawing.Image.FromStream(ms, true);
-            ms.Close();
-            return image;
+            using (MemoryStream ms = new MemoryStream(buffer))
+            {
+                Image image = System.Drawing.Image.FromStream(ms, true);
+                return image;
+            }
         }
 
         /// <summary> Convert Byte[] to string
