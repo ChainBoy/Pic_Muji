@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.IO;
 
 namespace TaoBao_Pic_Info
 {
@@ -11,6 +12,13 @@ namespace TaoBao_Pic_Info
         private static bool PASS = false;
         private static string PIC_URL_START = "http://img.muji.net/img/item/";
         private static string PIC_URL_END = "_400.jpg";
+        private static string TEMPLATE_TEXT = "";
+        private static string TEMPLATE_PATH = "template.csv";
+        private static string TEMPLATE_REPLACE = @"#U#";
+        private static string RESULT_PATH = "result";
+        private static string RESULT_SUFFIX = ".csv";
+        private static string RESULT_SPARE_SUFFIX = ".csv";
+        private static string ERROR_URL_PATH = "failed.txt";
         Comm comm = new Comm();
         ComputerCode code = new ComputerCode();
         public MujiMainForm()
@@ -103,6 +111,8 @@ namespace TaoBao_Pic_Info
 
         private void init()
         {
+            load_template();
+            check_result_path();
             load_info();
             show();
         }
@@ -115,6 +125,43 @@ namespace TaoBao_Pic_Info
             else
             {
                 this.tab_main.SelectedIndex = 1;
+            }
+        }
+        /// <summary> 加载模版
+        /// 
+        /// </summary>
+        private void load_template()
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader(TEMPLATE_PATH, System.Text.Encoding.UTF8))
+                {
+                    TEMPLATE_TEXT = sr.ReadToEnd();
+                }
+            }
+            catch (FileNotFoundException)
+            { }
+            catch (DirectoryNotFoundException)
+            { }
+            catch (IOException)
+            { }
+            if (TEMPLATE_TEXT.Length <= 0)
+            {
+                TEMPLATE_TEXT = TEMPLATE_REPLACE;
+                RESULT_SUFFIX = RESULT_SPARE_SUFFIX;
+            }
+        }
+
+
+        /// <summary> 检查结果目录
+        /// 
+        /// </summary>
+        private void check_result_path()
+        {
+            DirectoryInfo di = new DirectoryInfo(RESULT_PATH);
+            if (!di.Exists)
+            {
+                di.Create();
             }
         }
 
@@ -197,6 +244,93 @@ namespace TaoBao_Pic_Info
 
             get_say_info(ref sayHtml, url);
             string html = create_html_by_all_div(styleHtml, colorPicHtml, bigPicHtml, tryPicHtml, sizeInfoHtml, shopInfoHtml, sayHtml);
+
+            string shop_id = "";
+            if (html != "")
+            {
+                get_shop_id_by_url(url, out shop_id);
+            }
+            else
+            {
+                save_failed_url(url);
+            }
+            save_result(html, shop_id);
+            string img_url = "";
+            if (color_pic_urls.Count > 0)
+            {
+                img_url = color_pic_urls[0];
+            }
+            else if (big_pic_urls.Count > 0)
+            {
+                img_url = big_pic_urls[0];
+            }
+            if (img_url != "")
+            {
+                save_img_by_url(url, shop_id);
+            }
+        }
+
+        private void save_img_by_url(string url, string shop_id)
+        {
+            byte[] img_b = comm.Request_bytes(url);
+            this.pictureBox1.Image =  comm.bytes_to_image(img_b);
+            comm.save_image_by_list_byte(img_b, RESULT_PATH + "/" + shop_id + ".jpg");
+        }
+        /// <summary> 根据URL获取商品Id，不存在则设置为时间戳:yyyyMMddHHmmssffff
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="shop_id"></param>
+        private void get_shop_id_by_url(string url, out string shop_id)
+        {
+            shop_id = "";
+            MatchCollection match_nid = Regex.Matches(url, @"http://.+?muji.net/.+?(\d+)", RegexOptions.Singleline);
+            if (match_nid.Count > 0)
+            {
+                shop_id = match_nid[0].Groups[1].Value;
+            }
+            if (shop_id == "")
+            {
+                shop_id = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+            }
+        }
+
+        /// <summary> 保存失败链接
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        private void save_failed_url(string url)
+        {
+            using (StreamWriter sw = new StreamWriter(ERROR_URL_PATH, true))
+            {
+                sw.WriteLine(url);
+            }
+        }
+
+        /// <summary>保存csv
+        /// 
+        /// </summary>
+        /// <param name="html"></param>
+        private void save_result(string html, string shop_id)
+        {
+            string csv_content = create_csv_by_html(html);
+            check_result_path();
+            using (StreamWriter sw = new StreamWriter(RESULT_PATH + "/" + shop_id + "." + RESULT_SUFFIX, false))
+            {
+                sw.Write(csv_content);
+            }
+
+        }
+
+        /// <summary>根据html和csv模版生成csv
+        /// 
+        /// </summary>
+        /// <param name="html"></param>
+        /// <returns></returns>
+        private string create_csv_by_html(string html)
+        {
+            string result = Regex.Replace(TEMPLATE_TEXT, TEMPLATE_REPLACE, html);
+            return result;
         }
 
         /// <summary> 根据现有 div tag，组装成最终要保存的div

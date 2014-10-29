@@ -43,6 +43,8 @@
             this.btn_check_reg = new System.Windows.Forms.Button();
             this.tab_main = new System.Windows.Forms.TabControl();
             this.tab_spider = new System.Windows.Forms.TabPage();
+            this.rtbx_say = new System.Windows.Forms.RichTextBox();
+            this.rtbx_style = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btn_spider = new System.Windows.Forms.Button();
             this.tbx_urls = new System.Windows.Forms.TextBox();
@@ -51,12 +53,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.rtbx_style = new System.Windows.Forms.RichTextBox();
-            this.rtbx_say = new System.Windows.Forms.RichTextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.tab_main.SuspendLayout();
             this.tab_spider.SuspendLayout();
             this.tab_reg.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -176,6 +178,7 @@
             // 
             // tab_spider
             // 
+            this.tab_spider.Controls.Add(this.pictureBox1);
             this.tab_spider.Controls.Add(this.rtbx_say);
             this.tab_spider.Controls.Add(this.rtbx_style);
             this.tab_spider.Controls.Add(this.label6);
@@ -189,6 +192,25 @@
             this.tab_spider.TabIndex = 0;
             this.tab_spider.Text = "抓取";
             this.tab_spider.UseVisualStyleBackColor = true;
+            // 
+            // rtbx_say
+            // 
+            this.rtbx_say.Location = new System.Drawing.Point(56, 142);
+            this.rtbx_say.Name = "rtbx_say";
+            this.rtbx_say.Size = new System.Drawing.Size(291, 41);
+            this.rtbx_say.TabIndex = 6;
+            this.rtbx_say.Text = "亲，本店宝贝100%日本无印良品正品，假一闭店。代购时间15-25天左右，非质量问题不退换~本店可以提供日本购买凭证和EMS的物流证明~本店非七天无理由退换店铺，" +
+                "一旦下单，中途不能取消订单或者变更订单，请谅解~";
+            this.rtbx_say.Visible = false;
+            // 
+            // rtbx_style
+            // 
+            this.rtbx_style.Location = new System.Drawing.Point(369, 142);
+            this.rtbx_style.Name = "rtbx_style";
+            this.rtbx_style.Size = new System.Drawing.Size(97, 37);
+            this.rtbx_style.TabIndex = 5;
+            this.rtbx_style.Text = resources.GetString("rtbx_style.Text");
+            this.rtbx_style.Visible = false;
             // 
             // label6
             // 
@@ -215,7 +237,7 @@
             this.tbx_urls.Location = new System.Drawing.Point(56, 19);
             this.tbx_urls.Multiline = true;
             this.tbx_urls.Name = "tbx_urls";
-            this.tbx_urls.Size = new System.Drawing.Size(544, 103);
+            this.tbx_urls.Size = new System.Drawing.Size(410, 103);
             this.tbx_urls.TabIndex = 1;
             this.tbx_urls.Text = "http://www.muji.net/store/cmdty/detail/4549337291867";
             // 
@@ -257,7 +279,7 @@
             this.label7.Size = new System.Drawing.Size(215, 108);
             this.label7.TabIndex = 10;
             this.label7.Text = "软件售价：4000RMB/人/帐号/电脑/\r\n\r\n交易方式：支付宝账户13869139163\r\n\r\n支付宝打款，备注机器码和用户名\r\n\r\n联系授权人索取软件注册码" +
-    "。\r\n\r\n给您省出来的不止4000RMB，非诚勿扰。";
+                "。\r\n\r\n给您省出来的不止4000RMB，非诚勿扰。";
             // 
             // label4
             // 
@@ -269,7 +291,7 @@
             this.label4.Size = new System.Drawing.Size(527, 36);
             this.label4.TabIndex = 9;
             this.label4.Text = "步骤：输入用户名，生成验证码，联系开发者索要注册码，复制到注册码一栏，验证通过即可。\r\n\r\n联系人：张经理   QQ：1126918258   联系电话：1386" +
-    "9139163   Email：qq1126918258@gmail.com";
+                "9139163   Email：qq1126918258@gmail.com";
             // 
             // label8
             // 
@@ -280,26 +302,15 @@
             this.label8.Size = new System.Drawing.Size(639, 33);
             this.label8.TabIndex = 11;
             this.label8.Text = "本工具禁止以任何形式的编译、反编译、调试、修改等学习或交流，不允许用于商业、个人、集体等非法牟利用途，\r\n禁止使用者向第三方扩散、复制！使用者只有使用权！如违反使" +
-    "用约定，作者有权获取使用者所牟利的80%，并且收回软件使用权！\r\n软件所有权归作者【ChainBoy】所有！";
+                "用约定，作者有权获取使用者所牟利的80%，并且收回软件使用权！\r\n软件所有权归作者【ChainBoy】所有！";
             // 
-            // rtbx_style
+            // pictureBox1
             // 
-            this.rtbx_style.Location = new System.Drawing.Point(369, 142);
-            this.rtbx_style.Name = "rtbx_style";
-            this.rtbx_style.Size = new System.Drawing.Size(97, 37);
-            this.rtbx_style.TabIndex = 5;
-            this.rtbx_style.Text = resources.GetString("rtbx_style.Text");
-            this.rtbx_style.Visible = false;
-            // 
-            // rtbx_say
-            // 
-            this.rtbx_say.Location = new System.Drawing.Point(56, 142);
-            this.rtbx_say.Name = "rtbx_say";
-            this.rtbx_say.Size = new System.Drawing.Size(291, 41);
-            this.rtbx_say.TabIndex = 6;
-            this.rtbx_say.Text = "亲，本店宝贝100%日本无印良品正品，假一闭店。代购时间15-25天左右，非质量问题不退换~本店可以提供日本购买凭证和EMS的物流证明~本店非七天无理由退换店铺，" +
-    "一旦下单，中途不能取消订单或者变更订单，请谅解~";
-            this.rtbx_say.Visible = false;
+            this.pictureBox1.Location = new System.Drawing.Point(492, 22);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(108, 88);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // MujiMainForm
             // 
@@ -328,6 +339,7 @@
             this.tab_spider.PerformLayout();
             this.tab_reg.ResumeLayout(false);
             this.tab_reg.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -359,6 +371,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.RichTextBox rtbx_style;
         private System.Windows.Forms.RichTextBox rtbx_say;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

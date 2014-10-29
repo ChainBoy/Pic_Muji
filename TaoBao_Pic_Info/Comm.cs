@@ -132,7 +132,7 @@ namespace TaoBao_Pic_Info
         /// </summary>
         /// <param name="buffer"></param>
         /// <returns></returns>
-        public static Image bytes_to_image(byte[] buffer)
+        public Image bytes_to_image(byte[] buffer)
         {
             MemoryStream ms = new MemoryStream(buffer);
             Image image = System.Drawing.Image.FromStream(ms, true);
