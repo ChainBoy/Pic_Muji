@@ -43,6 +43,7 @@
             this.btn_check_reg = new System.Windows.Forms.Button();
             this.tab_main = new System.Windows.Forms.TabControl();
             this.tab_spider = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.rtbx_say = new System.Windows.Forms.RichTextBox();
             this.rtbx_style = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -53,12 +54,17 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tool_status_reg = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tool_status_spider = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tool_status_probar = new System.Windows.Forms.ToolStripProgressBar();
+            this.tool_status_text = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.tab_main.SuspendLayout();
             this.tab_spider.SuspendLayout();
-            this.tab_reg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tab_reg.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -170,7 +176,7 @@
             // 
             this.tab_main.Controls.Add(this.tab_spider);
             this.tab_main.Controls.Add(this.tab_reg);
-            this.tab_main.Location = new System.Drawing.Point(37, 47);
+            this.tab_main.Location = new System.Drawing.Point(37, 35);
             this.tab_main.Name = "tab_main";
             this.tab_main.SelectedIndex = 0;
             this.tab_main.Size = new System.Drawing.Size(696, 282);
@@ -193,6 +199,14 @@
             this.tab_spider.Text = "抓取";
             this.tab_spider.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(492, 22);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(108, 88);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
             // rtbx_say
             // 
             this.rtbx_say.Location = new System.Drawing.Point(56, 142);
@@ -200,7 +214,7 @@
             this.rtbx_say.Size = new System.Drawing.Size(291, 41);
             this.rtbx_say.TabIndex = 6;
             this.rtbx_say.Text = "亲，本店宝贝100%日本无印良品正品，假一闭店。代购时间15-25天左右，非质量问题不退换~本店可以提供日本购买凭证和EMS的物流证明~本店非七天无理由退换店铺，" +
-                "一旦下单，中途不能取消订单或者变更订单，请谅解~";
+    "一旦下单，中途不能取消订单或者变更订单，请谅解~";
             this.rtbx_say.Visible = false;
             // 
             // rtbx_style
@@ -239,7 +253,8 @@
             this.tbx_urls.Name = "tbx_urls";
             this.tbx_urls.Size = new System.Drawing.Size(410, 103);
             this.tbx_urls.TabIndex = 1;
-            this.tbx_urls.Text = "http://www.muji.net/store/cmdty/detail/4549337291867";
+            this.tbx_urls.Text = "http://www.muji.net/store/cmdty/detail/4549337291867\r\nhttp://www.muji.net/store/c" +
+    "mdty/detail/4549337339378\r\nhttp://www.muji.net/store/cmdty/detail/4549337294202";
             // 
             // label5
             // 
@@ -279,7 +294,7 @@
             this.label7.Size = new System.Drawing.Size(215, 108);
             this.label7.TabIndex = 10;
             this.label7.Text = "软件售价：4000RMB/人/帐号/电脑/\r\n\r\n交易方式：支付宝账户13869139163\r\n\r\n支付宝打款，备注机器码和用户名\r\n\r\n联系授权人索取软件注册码" +
-                "。\r\n\r\n给您省出来的不止4000RMB，非诚勿扰。";
+    "。\r\n\r\n给您省出来的不止4000RMB，非诚勿扰。";
             // 
             // label4
             // 
@@ -291,32 +306,62 @@
             this.label4.Size = new System.Drawing.Size(527, 36);
             this.label4.TabIndex = 9;
             this.label4.Text = "步骤：输入用户名，生成验证码，联系开发者索要注册码，复制到注册码一栏，验证通过即可。\r\n\r\n联系人：张经理   QQ：1126918258   联系电话：1386" +
-                "9139163   Email：qq1126918258@gmail.com";
+    "9139163   Email：qq1126918258@gmail.com";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("宋体", 8.2F);
-            this.label8.Location = new System.Drawing.Point(63, 342);
+            this.label8.Location = new System.Drawing.Point(63, 328);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(639, 33);
             this.label8.TabIndex = 11;
             this.label8.Text = "本工具禁止以任何形式的编译、反编译、调试、修改等学习或交流，不允许用于商业、个人、集体等非法牟利用途，\r\n禁止使用者向第三方扩散、复制！使用者只有使用权！如违反使" +
-                "用约定，作者有权获取使用者所牟利的80%，并且收回软件使用权！\r\n软件所有权归作者【ChainBoy】所有！";
+    "用约定，作者有权获取使用者所牟利的80%，并且收回软件使用权！\r\n软件所有权归作者【ChainBoy】所有！";
             // 
-            // pictureBox1
+            // statusStrip1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(492, 22);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(108, 88);
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tool_status_reg,
+            this.tool_status_spider,
+            this.tool_status_probar,
+            this.tool_status_text});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 364);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(783, 22);
+            this.statusStrip1.TabIndex = 12;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tool_status_reg
+            // 
+            this.tool_status_reg.Name = "tool_status_reg";
+            this.tool_status_reg.Size = new System.Drawing.Size(56, 17);
+            this.tool_status_reg.Text = "尚未注册";
+            // 
+            // tool_status_spider
+            // 
+            this.tool_status_spider.Name = "tool_status_spider";
+            this.tool_status_spider.Size = new System.Drawing.Size(80, 17);
+            this.tool_status_spider.Text = "任务尚未开始";
+            // 
+            // tool_status_probar
+            // 
+            this.tool_status_probar.Name = "tool_status_probar";
+            this.tool_status_probar.Size = new System.Drawing.Size(100, 16);
+            this.tool_status_probar.Value = 20;
+            // 
+            // tool_status_text
+            // 
+            this.tool_status_text.Name = "tool_status_text";
+            this.tool_status_text.Size = new System.Drawing.Size(34, 17);
+            this.tool_status_text.Text = "1/20";
             // 
             // MujiMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 386);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.tab_main);
             this.Controls.Add(this.menuStrip1);
@@ -337,9 +382,11 @@
             this.tab_main.ResumeLayout(false);
             this.tab_spider.ResumeLayout(false);
             this.tab_spider.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tab_reg.ResumeLayout(false);
             this.tab_reg.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -372,6 +419,11 @@
         private System.Windows.Forms.RichTextBox rtbx_style;
         private System.Windows.Forms.RichTextBox rtbx_say;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel tool_status_reg;
+        private System.Windows.Forms.ToolStripStatusLabel tool_status_spider;
+        private System.Windows.Forms.ToolStripProgressBar tool_status_probar;
+        private System.Windows.Forms.ToolStripStatusLabel tool_status_text;
     }
 }
 

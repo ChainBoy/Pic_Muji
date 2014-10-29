@@ -4,9 +4,12 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
+
 
 namespace TaoBao_Pic_Info
 {
+    public delegate void FlushClient();//代理
     public partial class MujiMainForm : Form
     {
         private const string SETTING_PATH = ".s";
@@ -15,13 +18,20 @@ namespace TaoBao_Pic_Info
         private static string PIC_URL_END = "_400.jpg";
         private static string TEMPLATE_TEXT = "";
         private static string TEMPLATE_PATH = "template.csv";
-        private static string TEMPLATE_REPLACE = @"#U#";
+        private static string TEMPLATE_REPLACE = "#U#";
         private static string RESULT_PATH = "result";
         private static string RESULT_SUFFIX = ".csv";
         private static string RESULT_SPARE_SUFFIX = ".csv";
         private static string ERROR_URL_PATH = "failed.txt";
+        private Thread THREAD_SPIDER = null;
+
+        private static string STATUS_REG = "尚未注册";
+        private static int STATUS_SPIDER_VALUE = 0;
+        private static string STATUS_TEXT = "";
+
         Comm comm = new Comm();
         ComputerCode code = new ComputerCode();
+
         public MujiMainForm()
         {
             InitializeComponent();
@@ -194,7 +204,10 @@ namespace TaoBao_Pic_Info
 
         private void btn_spider_Click(object sender, EventArgs e)
         {
-            spider_work();
+            THREAD_SPIDER = new Thread(spider_work);
+            THREAD_SPIDER.IsBackground = true;
+            THREAD_SPIDER.Start();
+            //spider_work();
         }
         /// <summary> 开始爬取信息
         /// 
@@ -213,8 +226,10 @@ namespace TaoBao_Pic_Info
             }
             else
             {
+                THREAD_SPIDER.Abort();
                 return;
             }
+            THREAD_SPIDER.Abort();
         }
 
         /// <summary>抓取单个url，组装成div大标签(包含style)可以用于处理csv
@@ -267,14 +282,14 @@ namespace TaoBao_Pic_Info
             }
             if (img_url != "")
             {
-                save_img_by_url(url, shop_id);
+                save_img_by_url(img_url, shop_id);
             }
         }
 
         private void save_img_by_url(string url, string shop_id)
         {
             byte[] img_b = comm.Request_bytes(url);
-            this.pictureBox1.Image = comm.bytes_to_image(img_b);
+            //this.pictureBox1.Image = comm.bytes_to_image(img_b);
             comm.save_image_by_list_byte(img_b, RESULT_PATH + "/" + shop_id + ".jpg");
         }
         /// <summary> 根据URL获取商品Id，不存在则设置为时间戳:yyyyMMddHHmmssffff
@@ -314,7 +329,7 @@ namespace TaoBao_Pic_Info
         /// <param name="html"></param>
         private void save_result(string html, string shop_id)
         {
-            string csv_content = create_csv_by_html(html);
+            string csv_content = create_csv_by_html(html).ToString();
             check_result_path();
             using (StreamWriter sw = new StreamWriter(RESULT_PATH + "/" + shop_id + RESULT_SUFFIX, false, Encoding.Default))
             {
@@ -330,8 +345,17 @@ namespace TaoBao_Pic_Info
         /// <returns></returns>
         private string create_csv_by_html(string html)
         {
-            html = Regex.Replace(html, "\n|\r\n", "");
-            string result = Regex.Replace(TEMPLATE_TEXT, TEMPLATE_REPLACE, html);
+            string result = "";
+            //html = Regex.Replace(html, "\n|\r\n", "");
+            if (RESULT_SUFFIX == ".csv")
+            {
+                html = Regex.Replace(html, "\"", "\"\"");
+                result = Regex.Replace(TEMPLATE_TEXT, TEMPLATE_REPLACE, "\"" + html + "\"");
+            }
+            else
+            {
+                result = Regex.Replace(TEMPLATE_TEXT, TEMPLATE_REPLACE, html);
+            }
             return result;
         }
 
@@ -347,7 +371,7 @@ namespace TaoBao_Pic_Info
         /// <returns></returns>
         private string create_html_by_all_div(string styleHtml, string colorPicHtml, string bigPicHtml, string tryPicHtml, string sizeInfoHtml, string shopInfoHtml, string sayHtml)
         {
-            string divHtml = "\"<div style=\"width: 520px;\">" + styleHtml + colorPicHtml + bigPicHtml + tryPicHtml + sizeInfoHtml + shopInfoHtml + sayHtml + "</div>\"";
+            string divHtml = "<div style=\"width: 520px;\">" + styleHtml + colorPicHtml + bigPicHtml + tryPicHtml + sizeInfoHtml + shopInfoHtml + sayHtml + "</div>";
             return divHtml;
         }
 
@@ -391,7 +415,7 @@ namespace TaoBao_Pic_Info
             string imgs_html = "<div id=\"" + tag_id + "\" class=\"section\">";
             for (int i = 0; i < pic_urls.Count; i++)
             {
-                imgs_html += "<img src=\"" + pic_urls[i] + "\"width=\"400\" height=\"400\" >";
+                imgs_html += "<img src=\"" + pic_urls[i] + "\" width=\"400\" height=\"400\" >";
             }
             imgs_html += "</div>";
             return imgs_html;
@@ -506,6 +530,50 @@ namespace TaoBao_Pic_Info
         private void get_say_info(ref string sayHtml, string url)
         {
             sayHtml = "<div id=\"say\" class=\"section\"> <p class=\"MsoNormal\"> <span> " + sayHtml + " </span></p> <p> <span lang=\"EN-US\"><font color=\"#ffffff\">" + url + "</font></span></p></div>";
+        }
+
+        /// <summary>设置状态栏 登录信息
+        /// 
+        /// </summary>
+        private void set_tool_status_reg()
+        {
+ 
+        }
+        private void set_tool_status_spider()
+        {
+            if (this.tool_status_probar.Control.InvokeRequired)
+            {
+                FlushClient fc = new FlushClient(set_tool_status_spider);
+                this.Invoke(fc);
+            }
+            else
+            {
+                this.tool_status_spider.Text = "";
+            }
+        }
+        private void set_tool_probar()
+        {
+            if (this.tool_status_probar.Control.InvokeRequired)
+            {
+                FlushClient fc = new FlushClient(set_tool_probar);
+                this.Invoke(fc);
+            }
+            else
+            {
+                this.tool_status_probar.Value = 1;
+            }
+        }
+        private void set_tool_status_text()
+        {
+            if (this.tool_status_probar.Control.InvokeRequired)
+            {
+                FlushClient fc = new FlushClient(set_tool_status_text);
+                this.Invoke(fc);
+            }
+            else
+            {
+                this.tool_status_text.Text = "";
+            }
         }
         /*
          color = re.findall('colorPictureOptions.+?picturemap(.+?)}};', con, re.S)  颜色图片
