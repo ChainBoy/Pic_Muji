@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
+using Microsoft.Win32;
 
 
 namespace TaoBao_Pic_Info
@@ -622,6 +623,18 @@ namespace TaoBao_Pic_Info
             STATUS_SPIDER_VALUE = num;
             set_tool_probar();
             set_tool_status_text();
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //string s = Registry.ClassesRoot.OpenSubKey(@"http\shell\open\command\").GetValue("").ToString();
+            //System.Diagnostics.Process.Start(s.Split('"')[1], "-- mailto://qq1126918258@qq.com");
+            System.Diagnostics.Process.Start("mailto://qq1126918258@qq.com");
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://connect.qq.com/widget/wpa/login.html?tuin=1126918258");
         }
         /*
          color = re.findall('colorPictureOptions.+?picturemap(.+?)}};', con, re.S)  颜色图片

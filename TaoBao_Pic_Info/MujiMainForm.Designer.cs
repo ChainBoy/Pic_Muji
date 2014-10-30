@@ -59,6 +59,9 @@
             this.tool_status_probar = new System.Windows.Forms.ToolStripProgressBar();
             this.tool_status_text = new System.Windows.Forms.ToolStripStatusLabel();
             this.label9 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.menuStrip1.SuspendLayout();
             this.tab_main.SuspendLayout();
             this.tab_spider.SuspendLayout();
@@ -258,6 +261,9 @@
             // 
             // tab_reg
             // 
+            this.tab_reg.Controls.Add(this.linkLabel3);
+            this.tab_reg.Controls.Add(this.linkLabel2);
+            this.tab_reg.Controls.Add(this.linkLabel1);
             this.tab_reg.Controls.Add(this.label7);
             this.tab_reg.Controls.Add(this.label4);
             this.tab_reg.Controls.Add(this.btn_create_com);
@@ -284,8 +290,8 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(215, 108);
             this.label7.TabIndex = 10;
-            this.label7.Text = "软件售价：4000RMB/人/帐号/电脑/\r\n\r\n交易方式：支付宝账户13869139163\r\n\r\n支付宝打款，备注机器码和用户名\r\n\r\n联系授权人索取软件注册码" +
-    "。\r\n\r\n给您省出来的不止4000RMB，非诚勿扰。";
+            this.label7.Text = "软件售价：4000RMB/人/帐号/电脑/\r\n\r\n交易方式：支付宝账户13869139163\r\n\r\n支付宝打款，备注机器码和用户名\r\n\r\n联系授权人 索取软件注册" +
+    "码。\r\n\r\n给您省出来的不止4000RMB，非诚勿扰。";
             // 
             // label4
             // 
@@ -303,12 +309,12 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("宋体", 8.2F);
-            this.label8.Location = new System.Drawing.Point(63, 328);
+            this.label8.Location = new System.Drawing.Point(40, 325);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(639, 33);
+            this.label8.Size = new System.Drawing.Size(566, 33);
             this.label8.TabIndex = 11;
             this.label8.Text = "本工具禁止以任何形式的编译、反编译、调试、修改等学习或交流，不允许用于商业、个人、集体等非法牟利用途，\r\n禁止使用者向第三方扩散、复制！使用者只有使用权！如违反使" +
-    "用约定，作者有权获取使用者所牟利的80%，并且收回软件使用权！\r\n软件所有权归作者【ChainBoy】所有！";
+    "用约定，作者有权获取使用者所牟利等额价值80%，\r\n并且收回软件使用权！软件所有权归作者【ChainBoy】所有！版权所有，受著作法保护！";
             // 
             // statusStrip1
             // 
@@ -356,6 +362,42 @@
             this.label9.Size = new System.Drawing.Size(553, 14);
             this.label9.TabIndex = 9;
             this.label9.Text = "在软件所在目录下添加模版CSV文件，文件名【template.csv】，替换项用【#U#】代替。";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("宋体", 9F);
+            this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.linkLabel1.Location = new System.Drawing.Point(485, 116);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(41, 12);
+            this.linkLabel1.TabIndex = 11;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "授权人";
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("宋体", 9F);
+            this.linkLabel2.Location = new System.Drawing.Point(442, 217);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(137, 12);
+            this.linkLabel2.TabIndex = 12;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "qq1126918258@gmail.com";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Font = new System.Drawing.Font("宋体", 9F);
+            this.linkLabel3.Location = new System.Drawing.Point(176, 217);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(65, 12);
+            this.linkLabel3.TabIndex = 13;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "1126918258";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
             // 
             // MujiMainForm
             // 
@@ -424,6 +466,9 @@
         private System.Windows.Forms.ToolStripStatusLabel tool_status_text;
         private System.Windows.Forms.RichTextBox rtbx_urls;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linkLabel3;
     }
 }
 
