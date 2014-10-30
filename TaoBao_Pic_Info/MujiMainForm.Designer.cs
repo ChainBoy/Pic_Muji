@@ -58,6 +58,7 @@
             this.tool_status_spider = new System.Windows.Forms.ToolStripStatusLabel();
             this.tool_status_probar = new System.Windows.Forms.ToolStripProgressBar();
             this.tool_status_text = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label9 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tab_main.SuspendLayout();
             this.tab_spider.SuspendLayout();
@@ -182,6 +183,7 @@
             // 
             // tab_spider
             // 
+            this.tab_spider.Controls.Add(this.label9);
             this.tab_spider.Controls.Add(this.rtbx_urls);
             this.tab_spider.Controls.Add(this.rtbx_say);
             this.tab_spider.Controls.Add(this.rtbx_style);
@@ -346,6 +348,15 @@
             this.tool_status_text.Size = new System.Drawing.Size(27, 17);
             this.tool_status_text.Text = "0/0";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(53, 138);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(553, 14);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "在软件所在目录下添加模版CSV文件，文件名【template.csv】，替换项用【#U#】代替。";
+            // 
             // MujiMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -412,6 +423,7 @@
         private System.Windows.Forms.ToolStripProgressBar tool_status_probar;
         private System.Windows.Forms.ToolStripStatusLabel tool_status_text;
         private System.Windows.Forms.RichTextBox rtbx_urls;
+        private System.Windows.Forms.Label label9;
     }
 }
 
