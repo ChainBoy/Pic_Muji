@@ -113,14 +113,15 @@ namespace TaoBao_Pic_Info
 
         private void tool_loginon_Click(object sender, EventArgs e)
         {
-            show();
+            this.tab_main.SelectedIndex = 1;
         }
 
         private void tool_spider_Click(object sender, EventArgs e)
         {
-            this.tab_main.SelectedIndex = 0;
-            //todo:暂时直接跳转抓取页，完善后必须验证是否注册。
-            show();
+            if (PASS)
+            {
+                show();
+            }
         }
 
         private void tool_exit_Click(object sender, EventArgs e)
@@ -635,6 +636,14 @@ namespace TaoBao_Pic_Info
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://connect.qq.com/widget/wpa/login.html?tuin=1126918258");
+        }
+
+        private void tab_main_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (!PASS)
+            {
+                show();
+            }
         }
         /*
          color = re.findall('colorPictureOptions.+?picturemap(.+?)}};', con, re.S)  颜色图片

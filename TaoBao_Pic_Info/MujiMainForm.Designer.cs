@@ -183,6 +183,7 @@
             this.tab_main.SelectedIndex = 0;
             this.tab_main.Size = new System.Drawing.Size(696, 282);
             this.tab_main.TabIndex = 9;
+            this.tab_main.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tab_main_Selecting);
             // 
             // tab_spider
             // 
