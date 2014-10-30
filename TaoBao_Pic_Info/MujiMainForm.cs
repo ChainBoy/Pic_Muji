@@ -24,8 +24,9 @@ namespace TaoBao_Pic_Info
         private static string RESULT_SPARE_SUFFIX = ".csv";
         private static string ERROR_URL_PATH = "failed.txt";
         private Thread THREAD_SPIDER = null;
+        private static int TASK_LEN = 0;
+        private static string URL_STR = "";
 
-        private static string STATUS_REG = "尚未注册";
         private static int STATUS_SPIDER_VALUE = 0;
         private static string STATUS_TEXT = "";
 
@@ -41,6 +42,7 @@ namespace TaoBao_Pic_Info
             string user = this.tbx_user.Text.Trim();
             if (user.Length < 5)
             {
+                set_tool_status_reg("用户名不正确");
                 MessageBox.Show("用户名不能小于5位！");
                 return;
             }
@@ -61,16 +63,19 @@ namespace TaoBao_Pic_Info
             if (this.tbx_reg.Text.Trim().Length < 10)
             {
                 MessageBox.Show("注册码长度不正确，请重新确认并验证，如有问题请联系[张志鹏]。");
+                set_tool_status_reg("注册码不正确");
                 return;
             }
             if (reg_user())
             {
                 MessageBox.Show("恭喜你，注册成功！请妥善保管密钥！");
+                set_tool_status_reg("注册成功");
                 this.tab_main.SelectedIndex = 0;
             }
             else
             {
-                MessageBox.Show("注册失败，请重新尝试，或者联系[张志鹏]。");
+                set_tool_status_reg("注册失败，请重新尝试，或者联系[张志鹏]");
+                MessageBox.Show("注册失败");
             }
         }
 
@@ -89,11 +94,13 @@ namespace TaoBao_Pic_Info
                 result = true;
                 PASS = true;
                 dump_info();
+                set_tool_status_reg("【" + user + "】验证通过");
             }
             else
             {
                 PASS = false;
                 result = false;
+                set_tool_status_reg("【" + user + "】验证失败");
             }
             return result;
         }
@@ -112,7 +119,7 @@ namespace TaoBao_Pic_Info
         {
             this.tab_main.SelectedIndex = 0;
             //todo:暂时直接跳转抓取页，完善后必须验证是否注册。
-            //show();
+            show();
         }
 
         private void tool_exit_Click(object sender, EventArgs e)
@@ -204,6 +211,7 @@ namespace TaoBao_Pic_Info
 
         private void btn_spider_Click(object sender, EventArgs e)
         {
+            URL_STR = this.rtbx_urls.Text.Trim();
             THREAD_SPIDER = new Thread(spider_work);
             THREAD_SPIDER.IsBackground = true;
             THREAD_SPIDER.Start();
@@ -217,18 +225,23 @@ namespace TaoBao_Pic_Info
             List<string> urls = get_input_urls();
             string styleHtml = this.rtbx_style.Text;
             string sayHtml = this.rtbx_say.Text;
+            set_task_len(urls.Count);
             if (urls.Count > 0)
             {
+                set_tool_status_spider("任务开始");
                 for (int i = 0; i < urls.Count; i++)
                 {
+                    set_tool_probar(i + 1);
                     work_by_url(urls[i], sayHtml, styleHtml);
                 }
             }
             else
             {
+                set_tool_status_spider("任务设置有误");
                 THREAD_SPIDER.Abort();
                 return;
             }
+            set_tool_status_spider("任务已结束");
             THREAD_SPIDER.Abort();
         }
 
@@ -239,6 +252,11 @@ namespace TaoBao_Pic_Info
         private void work_by_url(string url, string sayHtml, string styleHtml)
         {
             String con = comm.Request_string(url);
+            if (con == "")
+            {
+                set_tool_status_spider("任务异常，请检查网络");
+                return;
+            }
             List<string> color_pic_urls = new List<string>();
             get_color_pic_urls(con, out color_pic_urls);
 
@@ -381,14 +399,13 @@ namespace TaoBao_Pic_Info
         private List<string> get_input_urls()
         {
             List<string> result = new List<string>();
-            string url_str = this.tbx_urls.Text.Trim();
-            if (url_str.Length < 10)
+            if (URL_STR.Length < 10)
             {
                 MessageBox.Show("网址过短或者网址为空，请重新输入网址。");
             }
             else
             {
-                MatchCollection match_nid = Regex.Matches(url_str, @"http://.+?muji.net/.+?\d+", RegexOptions.Singleline);
+                MatchCollection match_nid = Regex.Matches(URL_STR, @"http://.+?muji.net/.+?\d+", RegexOptions.Singleline);
                 if (match_nid.Count < 1)
                 {
                     MessageBox.Show("请检查网址是否正确，网址域名是否为http://www.muji.net, 商品ID是否输入正确.");
@@ -535,10 +552,13 @@ namespace TaoBao_Pic_Info
         /// <summary>设置状态栏 登录信息
         /// 
         /// </summary>
-        private void set_tool_status_reg()
+        private void set_tool_status_reg(string status)
         {
- 
+            this.tool_status_reg.Text = status;
         }
+        /// <summary>设置状态栏 任务信息
+        /// 
+        /// </summary>
         private void set_tool_status_spider()
         {
             if (this.tool_status_probar.Control.InvokeRequired)
@@ -548,8 +568,13 @@ namespace TaoBao_Pic_Info
             }
             else
             {
-                this.tool_status_spider.Text = "";
+                this.tool_status_spider.Text = STATUS_TEXT;
             }
+        }
+        private void set_tool_status_spider(string status_text)
+        {
+            STATUS_TEXT = status_text;
+            set_tool_status_spider();
         }
         private void set_tool_probar()
         {
@@ -560,8 +585,25 @@ namespace TaoBao_Pic_Info
             }
             else
             {
-                this.tool_status_probar.Value = 1;
+                this.tool_status_probar.Value = STATUS_SPIDER_VALUE;
             }
+        }
+        private void set_task_len()
+        {
+            if (this.tool_status_probar.Control.InvokeRequired)
+            {
+                FlushClient fc = new FlushClient(set_task_len);
+                this.Invoke(fc);
+            }
+            else
+            {
+                this.tool_status_probar.Maximum = TASK_LEN;
+            }
+        }
+        private void set_task_len(int num)
+        {
+            TASK_LEN = num;
+            set_task_len();
         }
         private void set_tool_status_text()
         {
@@ -572,8 +614,14 @@ namespace TaoBao_Pic_Info
             }
             else
             {
-                this.tool_status_text.Text = "";
+                this.tool_status_text.Text = this.tool_status_probar.Value + "/" + this.tool_status_probar.Maximum;
             }
+        }
+        private void set_tool_probar(int num)
+        {
+            STATUS_SPIDER_VALUE = num;
+            set_tool_probar();
+            set_tool_status_text();
         }
         /*
          color = re.findall('colorPictureOptions.+?picturemap(.+?)}};', con, re.S)  颜色图片

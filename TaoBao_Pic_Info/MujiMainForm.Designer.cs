@@ -43,12 +43,11 @@
             this.btn_check_reg = new System.Windows.Forms.Button();
             this.tab_main = new System.Windows.Forms.TabControl();
             this.tab_spider = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.rtbx_urls = new System.Windows.Forms.RichTextBox();
             this.rtbx_say = new System.Windows.Forms.RichTextBox();
             this.rtbx_style = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btn_spider = new System.Windows.Forms.Button();
-            this.tbx_urls = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tab_reg = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
@@ -62,7 +61,6 @@
             this.menuStrip1.SuspendLayout();
             this.tab_main.SuspendLayout();
             this.tab_spider.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tab_reg.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -184,12 +182,11 @@
             // 
             // tab_spider
             // 
-            this.tab_spider.Controls.Add(this.pictureBox1);
+            this.tab_spider.Controls.Add(this.rtbx_urls);
             this.tab_spider.Controls.Add(this.rtbx_say);
             this.tab_spider.Controls.Add(this.rtbx_style);
             this.tab_spider.Controls.Add(this.label6);
             this.tab_spider.Controls.Add(this.btn_spider);
-            this.tab_spider.Controls.Add(this.tbx_urls);
             this.tab_spider.Controls.Add(this.label5);
             this.tab_spider.Location = new System.Drawing.Point(4, 23);
             this.tab_spider.Name = "tab_spider";
@@ -199,13 +196,15 @@
             this.tab_spider.Text = "抓取";
             this.tab_spider.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // rtbx_urls
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(492, 22);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(108, 88);
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
+            this.rtbx_urls.DetectUrls = false;
+            this.rtbx_urls.Location = new System.Drawing.Point(56, 22);
+            this.rtbx_urls.Name = "rtbx_urls";
+            this.rtbx_urls.Size = new System.Drawing.Size(544, 96);
+            this.rtbx_urls.TabIndex = 8;
+            this.rtbx_urls.Text = "http://www.muji.net/store/cmdty/detail/4549337291867\nhttp://www.muji.net/store/cm" +
+    "dty/detail/4549337339378\nhttp://www.muji.net/store/cmdty/detail/4549337294202";
             // 
             // rtbx_say
             // 
@@ -238,23 +237,13 @@
             // 
             // btn_spider
             // 
-            this.btn_spider.Location = new System.Drawing.Point(492, 142);
+            this.btn_spider.Location = new System.Drawing.Point(492, 172);
             this.btn_spider.Name = "btn_spider";
             this.btn_spider.Size = new System.Drawing.Size(108, 41);
             this.btn_spider.TabIndex = 2;
             this.btn_spider.Text = "开 始 抓 取";
             this.btn_spider.UseVisualStyleBackColor = true;
             this.btn_spider.Click += new System.EventHandler(this.btn_spider_Click);
-            // 
-            // tbx_urls
-            // 
-            this.tbx_urls.Location = new System.Drawing.Point(56, 19);
-            this.tbx_urls.Multiline = true;
-            this.tbx_urls.Name = "tbx_urls";
-            this.tbx_urls.Size = new System.Drawing.Size(410, 103);
-            this.tbx_urls.TabIndex = 1;
-            this.tbx_urls.Text = "http://www.muji.net/store/cmdty/detail/4549337291867\r\nhttp://www.muji.net/store/c" +
-    "mdty/detail/4549337339378\r\nhttp://www.muji.net/store/cmdty/detail/4549337294202";
             // 
             // label5
             // 
@@ -346,15 +335,16 @@
             // 
             // tool_status_probar
             // 
+            this.tool_status_probar.Maximum = 0;
             this.tool_status_probar.Name = "tool_status_probar";
             this.tool_status_probar.Size = new System.Drawing.Size(100, 16);
-            this.tool_status_probar.Value = 20;
+            this.tool_status_probar.Step = 1;
             // 
             // tool_status_text
             // 
             this.tool_status_text.Name = "tool_status_text";
-            this.tool_status_text.Size = new System.Drawing.Size(34, 17);
-            this.tool_status_text.Text = "1/20";
+            this.tool_status_text.Size = new System.Drawing.Size(27, 17);
+            this.tool_status_text.Text = "0/0";
             // 
             // MujiMainForm
             // 
@@ -382,7 +372,6 @@
             this.tab_main.ResumeLayout(false);
             this.tab_spider.ResumeLayout(false);
             this.tab_spider.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tab_reg.ResumeLayout(false);
             this.tab_reg.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -411,19 +400,18 @@
         private System.Windows.Forms.TabPage tab_reg;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbx_urls;
         private System.Windows.Forms.Button btn_spider;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.RichTextBox rtbx_style;
         private System.Windows.Forms.RichTextBox rtbx_say;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tool_status_reg;
         private System.Windows.Forms.ToolStripStatusLabel tool_status_spider;
         private System.Windows.Forms.ToolStripProgressBar tool_status_probar;
         private System.Windows.Forms.ToolStripStatusLabel tool_status_text;
+        private System.Windows.Forms.RichTextBox rtbx_urls;
     }
 }
 
