@@ -235,7 +235,7 @@
             this.rtbx_urls.Size = new System.Drawing.Size(544, 96);
             this.rtbx_urls.TabIndex = 8;
             this.rtbx_urls.Text = "http://www.muji.net/store/cmdty/detail/4549337291867\nhttp://www.muji.net/store/cm" +
-                "dty/detail/4549337339378\nhttp://www.muji.net/store/cmdty/detail/4549337294202";
+                "dty/detail/4549337294202";
             // 
             // rtbx_say
             // 
