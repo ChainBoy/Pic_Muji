@@ -431,10 +431,10 @@ namespace TaoBao_Pic_Info
         /// <returns></returns>
         private string get_pic_html(List<string> pic_urls, string tag_id = "colorPic")
         {
-            string imgs_html = "<div id=\"" + tag_id + "\" class=\"section\">";
+            string imgs_html = "<div id=\"" + tag_id + "\" class=\"section\" " + this.lab_div.Text + ">";
             for (int i = 0; i < pic_urls.Count; i++)
             {
-                imgs_html += "<img src=\"" + pic_urls[i] + "\" width=\"400\" height=\"400\" >";
+                imgs_html += "<img src=\"" + pic_urls[i] + "\" width=\"400\" height=\"400\" " + this.lab_img.Text + ">";
             }
             imgs_html += "</div>";
             return imgs_html;
@@ -448,10 +448,11 @@ namespace TaoBao_Pic_Info
         /// <returns></returns>
         private string get_try_pic_html(List<string> try_pic_tags, string tag_id = "tryPic")
         {
-            string imgs_html = "<div id=\"" + tag_id + "\" class=\"section\">";
+            string imgs_html = "<div id=\"" + tag_id + "\" class=\"section\"" + this.lab_div.Text + ">";
             for (int i = 0; i < try_pic_tags.Count; i++)
             {
-                imgs_html += try_pic_tags[i];
+
+                imgs_html += Regex.Replace(try_pic_tags[i], ">", this.lab_img.Text + " >", RegexOptions.Singleline);
             }
             imgs_html += "</div>";
             return imgs_html;
@@ -513,6 +514,10 @@ namespace TaoBao_Pic_Info
             if (match_color.Count > 0)
             {
                 sizeInfoHtml = match_color[0].Value;
+                sizeInfoHtml = Regex.Replace(sizeInfoHtml, " id=\"sizeList\"", " id=\"sizeList\" " + this.lab_div.Text, RegexOptions.Singleline);
+                sizeInfoHtml = Regex.Replace(sizeInfoHtml, "class=\"horizontal\"", " class=\"horizontal\" " + this.lab_table.Text, RegexOptions.Singleline);
+                sizeInfoHtml = Regex.Replace(sizeInfoHtml, "<td>", " <td " + this.lab_td.Text + " >", RegexOptions.Singleline);
+                sizeInfoHtml = Regex.Replace(sizeInfoHtml, "<th>", " <th " + this.lab_th_size.Text + " >", RegexOptions.Singleline);
             }
         }
 
@@ -528,6 +533,10 @@ namespace TaoBao_Pic_Info
             if (match_color.Count > 0)
             {
                 shopInfoHtml = match_color[0].Value;
+                shopInfoHtml = Regex.Replace(shopInfoHtml, " id=\"spec\"", " id=\"spec\" " + this.lab_div.Text, RegexOptions.Singleline);
+                shopInfoHtml = Regex.Replace(shopInfoHtml, "class=\"vertical\"", " class=\"vertical\" " + this.lab_table.Text, RegexOptions.Singleline);
+                shopInfoHtml = Regex.Replace(shopInfoHtml, "<td>", " <td " + this.lab_td.Text + " >", RegexOptions.Singleline);
+                shopInfoHtml = Regex.Replace(shopInfoHtml, "<th>", " <th " + this.lab_th_shop.Text + " >", RegexOptions.Singleline);
             }
         }
 
@@ -548,7 +557,7 @@ namespace TaoBao_Pic_Info
 
         private void get_say_info(ref string sayHtml, string url)
         {
-            sayHtml = "<div id=\"say\" class=\"section\"> <p class=\"MsoNormal\"> <span> " + sayHtml + " </span></p> <p> <span lang=\"EN-US\"><font color=\"#ffffff\">" + url + "</font></span></p></div>";
+            sayHtml = "<div id=\"say\" class=\"section\" " + this.lab_div.Text + " > <p class=\"MsoNormal\" " + this.lab_p.Text + "> <span " + this.lab_span + "> " + sayHtml + " </span></p> <p> <span lang=\"EN-US\"><font color=\"#ffffff\">" + url + "</font></span></p></div>";
         }
 
         /// <summary>设置状态栏 登录信息
@@ -635,7 +644,7 @@ namespace TaoBao_Pic_Info
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://connect.qq.com/widget/wpa/login.html?tuin=1126918258");
+            System.Diagnostics.Process.Start("http://wpa.qq.com/msgrd?v=3&uin=1126918258&site=1126918258&menu=yes");
         }
 
         private void tab_main_Selecting(object sender, TabControlCancelEventArgs e)

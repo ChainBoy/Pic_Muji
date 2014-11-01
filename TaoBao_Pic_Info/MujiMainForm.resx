@@ -120,6 +120,9 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>11, 6</value>
   </metadata>
+  <data name="lab_div.Text" xml:space="preserve">
+    <value>style="margin: 15px 0px; padding-bottom: 15px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: rgb(232, 232, 232); font-family: Simsun; font-size: medium; line-height: normal;"</value>
+  </data>
   <data name="rtbx_style.Text" xml:space="preserve">
     <value>&lt;style&gt;
   table {border-collapse: collapse;border-spacing: 0;  border-color: gray;}
