@@ -6,11 +6,11 @@ using System.Resources;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("TaoBao_Pic_Info")]
-[assembly: AssemblyDescription("GetPicInfoFromMujiToTaobao")]
+[assembly: AssemblyTitle("淘宝模版生成器 - 无良印品")]
+[assembly: AssemblyDescription("无良印品图片管理器 - Author:张志鹏")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ChainBoy")]
-[assembly: AssemblyProduct("TaoBao_Pic_Info")]
+[assembly: AssemblyProduct("无良印品图片管理器")]
 [assembly: AssemblyCopyright("Copyright ©  2014 ChainBoy")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

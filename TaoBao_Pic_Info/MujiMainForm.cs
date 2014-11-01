@@ -521,6 +521,7 @@ namespace TaoBao_Pic_Info
             }
         }
 
+
         /// <summary> 获取产品说明
         /// 
         /// </summary>
